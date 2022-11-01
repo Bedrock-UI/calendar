@@ -1,3 +1,5 @@
+import './styles.css';
+
 export const decorators = [
   (Story) => (
     <div style={{ minHeight: 240 }}>
