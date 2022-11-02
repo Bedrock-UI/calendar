@@ -6,14 +6,6 @@ import type { CurrentCalendarDate } from 'types/dates';
 
 interface Calendar {
   /**
-   * Represents the month and year that are currently represented in the calendar
-   */
-  calendarDate: CurrentCalendarDate;
-  /**
-   * Update the month and year that the calendar should render
-   */
-  setCalendarDate: (calendarDate: CurrentCalendarDate) => void;
-  /**
    * The DayJS value for today
    */
   today: Dayjs;
@@ -28,7 +20,7 @@ interface UseCalendarOptions {
   year: CurrentCalendarDate['year'];
 }
 
-function useCalendar({ month, year }: UseCalendarOptions) {
+function useCalendar({ month, year }: UseCalendarOptions): Calendar {
   const { today, weeks } = useMemo(() => calendar({ month, year }), [month, year]);
 
   return {
