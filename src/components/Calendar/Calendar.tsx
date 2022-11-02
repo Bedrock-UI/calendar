@@ -1,11 +1,18 @@
+import dayjs from 'dayjs';
 import React from 'react';
 import { DAYS_OF_WEEK } from 'constants/constants';
 import { useCalendar } from 'hooks/useCalendar';
 
 import type { Props } from './Calendar.types';
 
-function Calendar({ renderDay, renderHeader, ...props }: Props) {
-  const { weeks } = useCalendar();
+function Calendar({
+  month = dayjs().month(),
+  year = dayjs().year(),
+  renderDay,
+  renderHeader,
+  ...props
+}: Props) {
+  const { weeks } = useCalendar({ month, year });
 
   return (
     <table {...props}>
