@@ -16,13 +16,17 @@ interface Header {
 
 export interface Props extends TableProps {
   /**
-   * month to render, defaults to the current month
+   * month to render
    */
-  month?: number;
+  month: number;
   /**
-   * year to render, defaults to the current year
+   * year to render
    */
-  year?: number;
+  year: number;
+  /**
+   * Nested array of weeks and days to render
+   */
+  weeks: number[][];
   renderDay: (day: Day) => ReactNode;
   renderHeader: (header: Header) => ReactNode;
 }

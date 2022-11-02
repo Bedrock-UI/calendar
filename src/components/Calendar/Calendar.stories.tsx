@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { useCalendar } from 'hooks/useCalendar';
 import React, { useState } from 'react';
 import BedrockCalendar from './Calendar';
 
@@ -19,39 +20,19 @@ export default {
 const DAYS_OF_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 export const Calendar = (props: Props) => {
-  const [{ month, year }, setCurrentDate] = useState<CurrentDate>({
-    month: dayjs().month(),
-    year: dayjs().year(),
-  });
+  const { next, previous, month, weeks, year } = useCalendar();
 
   return (
     <>
-      <button
-        onClick={() => {
-          setCurrentDate({
-            month: month === 0 ? 11 : month - 1,
-            year: month === 0 ? year - 1 : year,
-          });
-        }}
-      >
-        Previous
-      </button>
+      <button onClick={() => previous()}>Previous</button>
 
-      <button
-        onClick={() => {
-          setCurrentDate({
-            month: month === 11 ? 0 : month + 1,
-            year: month === 11 ? year + 1 : year,
-          });
-        }}
-      >
-        Next
-      </button>
+      <button onClick={() => next()}>Next</button>
 
       <BedrockCalendar
         {...props}
         className="calendar"
         month={month}
+        weeks={weeks}
         year={year}
         renderDay={({ day, valid }) => {
           if (!valid) {
