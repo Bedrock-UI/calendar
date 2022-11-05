@@ -65,15 +65,15 @@ function useCalendar({
 
   const handleNext = useCallback(() => {
     setCurrentDate({
-      month: month === 0 ? 11 : month - 1,
-      year: month === 0 ? year - 1 : year,
+      month: month === 11 ? 0 : month + 1,
+      year: month === 11 ? year + 1 : year,
     });
   }, [month, setCurrentDate, year]);
 
   const handlePrevious = useCallback(() => {
     setCurrentDate({
-      month: month === 11 ? 0 : month + 1,
-      year: month === 11 ? year + 1 : year,
+      month: month === 0 ? 11 : month - 1,
+      year: month === 0 ? year - 1 : year,
     });
   }, [month, setCurrentDate, year]);
 
