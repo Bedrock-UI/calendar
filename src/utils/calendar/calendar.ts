@@ -8,16 +8,17 @@ dayjs.extend(dayjsObjectSupport);
 
 function calendar({ month, year }: CurrentCalendarDate) {
   const today = dayjs();
-  const visibleMonth = dayjs({ day: 1, month, year }).startOf('month');
+  const currentMonth = dayjs({ day: 1, month, year }).startOf('month');
 
   // the the number of the first day of the month
-  const startDay = visibleMonth.day();
+  const startDay = currentMonth.day();
 
-  const days = Array.from(Array(visibleMonth.daysInMonth() + startDay)).map((_, index) =>
+  const days = Array.from(Array(currentMonth.daysInMonth() + startDay)).map((_, index) =>
     index >= startDay ? index - startDay + 1 : -1
   );
 
   return {
+    currentMonth,
     today,
     weeks: chunk(days, 7),
   };

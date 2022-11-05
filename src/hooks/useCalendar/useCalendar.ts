@@ -19,7 +19,11 @@ interface Calendar {
    */
   setCurrentDate: (currentDate: CurrentCalendarDate) => void;
   /**
-   * current month
+   * The DayJS value for the currently visible month
+   */
+  currentMonth: Dayjs;
+  /**
+   * current month number
    */
   month: CurrentCalendarDate['month'];
   /**
@@ -31,7 +35,7 @@ interface Calendar {
    */
   weeks: number[][];
   /**
-   * current year
+   * current year number
    */
   year: CurrentCalendarDate['year'];
 }
@@ -50,7 +54,7 @@ function useCalendar({
     year: yearOption,
   });
 
-  const { today, weeks } = useMemo(() => calendar({ month, year }), [month, year]);
+  const { currentMonth, today, weeks } = useMemo(() => calendar({ month, year }), [month, year]);
 
   const handleSetCurrentDate = useCallback(
     (newCurrentDate: Partial<CurrentCalendarDate>) => {
@@ -78,6 +82,7 @@ function useCalendar({
     previous: handlePrevious,
     setCurrentDate: handleSetCurrentDate,
 
+    currentMonth,
     month,
     today,
     weeks,
