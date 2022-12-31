@@ -19,6 +19,14 @@ interface Calendar {
    */
   setCurrentDate: (currentDate: CurrentCalendarDate) => void;
   /**
+   * go to the month that includes the current date
+   */
+  today: () => void;
+  /**
+   * The DayJS value for today
+   */
+  currentDate: Dayjs;
+  /**
    * The DayJS value for the currently visible month
    */
   currentMonth: Dayjs;
@@ -26,10 +34,7 @@ interface Calendar {
    * current month number
    */
   month: CurrentCalendarDate['month'];
-  /**
-   * The DayJS value for today
-   */
-  today: Dayjs;
+
   /**
    * Array of weeks containing an array of days padded by -1 for invalid days
    */
@@ -77,14 +82,22 @@ function useCalendar({
     });
   }, [month, setCurrentDate, year]);
 
+  const handleToday = useCallback(() => {
+    setCurrentDate({
+      month: dayjs().month(),
+      year: dayjs().year(),
+    });
+  }, [setCurrentDate]);
+
   return {
+    today: handleToday,
     next: handleNext,
     previous: handlePrevious,
     setCurrentDate: handleSetCurrentDate,
 
+    currentDate: today,
     currentMonth,
     month,
-    today,
     weeks,
     year,
   };
