@@ -1,6 +1,6 @@
 {
   "name": "@bedrock-ui/calendar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bedrock UI Calendar",
   "files": [
     "lib"
