@@ -5,7 +5,7 @@ import { calendar } from 'utils/calendar';
 import type { Dayjs } from 'dayjs';
 import type { CurrentCalendarDate } from 'types/dates';
 
-interface Calendar {
+export interface CalendarHook {
   /**
    * next month
    */
@@ -53,7 +53,7 @@ interface UseCalendarOptions {
 function useCalendar({
   month: monthOption = dayjs().month(),
   year: yearOption = dayjs().year(),
-}: UseCalendarOptions = {}): Calendar {
+}: UseCalendarOptions = {}): CalendarHook {
   const [{ month, year }, setCurrentDate] = useState<CurrentCalendarDate>({
     month: monthOption,
     year: yearOption,
